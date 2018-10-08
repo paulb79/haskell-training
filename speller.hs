@@ -15,3 +15,4 @@ main = do
     print (speller ["abacus"])
     print (speller [])
     print (processList ["apple", "banana", "coconut"])
+
