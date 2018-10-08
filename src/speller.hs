@@ -1,10 +1,18 @@
+import Data.List
 
-speller :: [[char]] -> [char]
-speller input = map (\x -> x.head ++ " is for " ++ x) input 
+speller :: [String] -> String
+speller [] = ""
+speller (x:[]) = getPhrase x 
+speller (xs) = processList xs
 
-main = do 
-	print (speller [""])
-	print (speller ["Hello"])
-	print (speller [["Pie", "Peter"]])
+getPhrase :: String -> String
+getPhrase word = [head word] ++ " is for " ++ word
 
+processList :: [String] -> String
+processList xs = intercalate ", " (map getPhrase $ init xs) ++ ", and " ++ getPhrase (last xs)
+
+main = do
+    print (speller ["abacus"])
+    print (speller [])
+    print (processList ["apple", "banana", "coconut"])
 
