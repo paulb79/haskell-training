@@ -2,17 +2,17 @@ import Data.List
 
 speller :: [String] -> String
 speller [] = ""
-speller (x:[]) = getPhrase x 
+speller (x:[]) = createPhrase x 
 speller (xs) = processList xs
 
-getPhrase :: String -> String
-getPhrase word = [head word] ++ " is for " ++ word
+createPhrase :: String -> String
+createPhrase word = [head word] ++ " is for " ++ word ++ " "
 
 processList :: [String] -> String
-processList xs = intercalate ", " (map getPhrase $ init xs) ++ ", and " ++ getPhrase (last xs)
+processList xs = concat (map createPhrase(init xs)) ++ ", and " ++ createPhrase(last xs)
 
 main = do
-    print (speller ["abacus"])
     print (speller [])
+    print (speller ["abacus"])
     print (processList ["apple", "banana", "coconut"])
 
